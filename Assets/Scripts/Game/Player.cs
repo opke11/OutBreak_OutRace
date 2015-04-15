@@ -8,20 +8,24 @@ public class Player : MonoBehaviour {
 
 	private float gameoverTime = 2f;
 	private float gameoverTimer;
-	public bool hasBeenHit = false;
+	public bool hasBeenHit, armourPickedUp;
 
 	public float playerSpeed;
 	private float playerAcceleration;
 	private float playerBreak;
+	private UIScore score;
+	public int spikeEndu;
 	
 	void Start ()
 	{
 		gameController = GameObject.FindObjectOfType<GameController> ();
+		score = GameObject.FindObjectOfType<UIScore> ();
 
 		//sets initial values
 		playerAcceleration = 5 * Time.deltaTime;
 		playerBreak = 10 * Time.deltaTime;
 		playerSpeed = 0f;
+		spikeEndu = 0;
 	}
 	
 	void Update ()
@@ -107,10 +111,16 @@ public class Player : MonoBehaviour {
 
 		//hit check is used for gameover and to 'turn off' some functions
 		//may be useful for  other things, or remove when other stuff is working
-		if (hasBeenHit == false)
+		if (hasBeenHit == false && armourPickedUp == false)
 		{
 			gameoverTimer = gameoverTime;
 			hasBeenHit = true;
+		}
+
+		//The purpose of the armour has been used.
+		if (armourPickedUp == true) {
+			score.SetScore(65);
+			armourPickedUp = false;
 		}
 	}
 
@@ -119,16 +129,21 @@ public class Player : MonoBehaviour {
 	void PickupArmour ()
 	{
 		//something here to add armour pickup
+		armourPickedUp = true; //As the current set up, armour will protect player once (Jefone);
+
 	}
 
 	void PickupSpikes ()
 	{
 		//something here to add spikes pickup
+		spikeEndu = 10;
 	}
 
 	void PickupNitro ()
 	{
 		//something here to add nitro pickup
+		//Give player a slight boost in their current speed.
+		playerSpeed *= 1.5f;
 	}
 
 	void PickupSupplies ()
@@ -149,5 +164,11 @@ public class Player : MonoBehaviour {
 	void ObstacleBarricade ()
 	{
 		//something here to add barricade hit - slow speed
+		score.SetScore (98);	
+		if (spikeEndu <= 0) {
+			playerSpeed *= 0.5f;
+		} else {
+			spikeEndu--;
+		}
 	}
 }

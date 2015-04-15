@@ -5,9 +5,12 @@ public class UIScore : MonoBehaviour {
 
 	public UnityEngine.UI.Text text;
 
+	private int curScore;
+
 	//basic setting of the score text
 	public void SetScore (int score)
 	{
-		text.text = score.ToString ("000");
+		curScore += score;
+		text.text = curScore.ToString ("000");
 	}
 }
