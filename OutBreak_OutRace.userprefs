@@ -1,16 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Game\PickUp.cs">
-    <Files>
-      <File FileName="Assets\Scripts\Game\Blood.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Game\GameController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Game\Player.cs" Line="136" Column="7" />
-      <File FileName="Assets\Scripts\Game\PickUp.cs" Line="51" Column="55" />
-      <File FileName="Assets\Scripts\UI\UIScore.cs" Line="12" Column="3" />
-      <File FileName="Assets\Scripts\Game\MovingRoad.cs" Line="33" Column="60" />
-      <File FileName="Assets\Scripts\Game\SpiningRoad.cs" Line="14" Column="85" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

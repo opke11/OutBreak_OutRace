@@ -48,10 +48,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Game\Blood.cs" />
      <Compile Include="Assets\Scripts\Game\GameController.cs" />
-     <Compile Include="Assets\Scripts\Game\MovingRoad.cs" />
      <Compile Include="Assets\Scripts\Game\PickUp.cs" />
      <Compile Include="Assets\Scripts\Game\Player.cs" />
-     <Compile Include="Assets\Scripts\Game\SpiningRoad.cs" />
      <Compile Include="Assets\Scripts\UI\TitleController.cs" />
      <Compile Include="Assets\Scripts\UI\UIGameOver.cs" />
      <Compile Include="Assets\Scripts\UI\UILoadLevel.cs" />
