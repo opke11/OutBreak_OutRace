@@ -15,11 +15,13 @@ public class PlayerController : MonoBehaviour {
     private float playerBreak;
     private UIScore score;
     public float SpikeTime;
+	private Rigidbody2D carPhy;
 
     void Start()
     {
         gameController = GameObject.FindObjectOfType<GameController>();
         score = GameObject.FindObjectOfType<UIScore>();
+		carPhy = GetComponent<Rigidbody2D> ();
 
         //sets initial values
         playerAcceleration = 5 * Time.deltaTime;
@@ -31,7 +33,13 @@ public class PlayerController : MonoBehaviour {
     void Update()
     {
         //this line will always move the car based on its "current" speed
-        transform.position += transform.right * playerSpeed * Time.deltaTime;
+        //transform.position += transform.right * playerSpeed * Time.deltaTime;
+
+		///Moving the transform doesn't corellate with the mass, nor that the car drops slower or gained more height,
+		/// Thus, the car might net to be pushed by physcial instead (Jefone)
+		/// 
+
+		carPhy.AddRelativeForce (Vector2.right * playerSpeed, ForceMode2D.Force);
 
         //if the Right Arrow is pressed, and the speed is lower than 5
         //speed will be set to 5, gives some instant acceleration
@@ -75,17 +83,17 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            GetComponent<Rigidbody2D>().mass = 5;
+            carPhy.mass = 5;
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
-            GetComponent<Rigidbody2D>().mass = 0.0001f;
+			carPhy.mass = 0.01f; //reduced (Jefone)
         }
         else
         {
-            if (GetComponent<Rigidbody2D>().mass != 1)
+            if (carPhy.mass != 1)
             {
-                GetComponent<Rigidbody2D>().mass = 1;
+                carPhy.mass = 1;
             }
         }
     }
@@ -119,19 +127,29 @@ public class PlayerController : MonoBehaviour {
 
     //current hit function, just ends the game after spawning some 'blood'
     //expand for each type of hit, see "Car" script for more details
-    void Hit()
+    void HittedZombieHeard()
     {
         //blood can be used on the zombies
-        Blood newBlood = GameObject.Instantiate(bloodPrefab) as Blood;
-        newBlood.transform.position = transform.position;
+        //Blood newBlood = GameObject.Instantiate(bloodPrefab) as Blood;
+        //newBlood.transform.position = transform.position;
+		//For some reaons Blood.cs can't be attached at all (Jefone)
 
         //hit check is used for gameover and to 'turn off' some functions
         //may be useful for  other things, or remove when other stuff is working
-        if (hasBeenHit == false && armourPickedUp == false)
+        if (armourPickedUp == false && SpikeTime <= 0)
         {
-            gameoverTimer = gameoverTime;
-            hasBeenHit = true;
+			playerSpeed *= 0.1f;
         }
+
+		//score.SetScore (80);
+
+		if (armourPickedUp && SpikeTime <= 0) {
+			armourPickedUp = false;
+		}
+
+		if (SpikeTime > 0) {
+			SpikeTime--;
+		}
     }
 
     //USE the functions below for the pickup messages
@@ -159,16 +177,12 @@ public class PlayerController : MonoBehaviour {
     void PickupSupplies()
     {
         //something here to add supplie score
+		print ("picked up subs");
     }
 
     void ObstacleSoloZombie()
     {
         //something here to run single zombie hit - score, damage
-    }
-
-    void ObstacleHordeZombie()
-    {
-        //something here to add horde zombie hit - score, damage
     }
 
     void ObstacleBarricade()
