@@ -19,12 +19,36 @@ public class GameController : MonoBehaviour {
 	public int bestScore;
 	public float bestTime;
 
-	// Use this for initialization
-	void Start ()
-	{
-		//prevents cursor leaving the screen during gameplay, add back in when done
-		//Screen.lockCursor = true;
-	}
+    public Player Player1;
+    public Player Player2;
+
+    // Use this for initialization
+    void Start()
+    {
+        CreateNewPlayer();
+    }
+
+    public Player CreateNewPlayer()
+    {
+
+        Player NewPlayer = new Player(GetPlayerName(), 0, 100, 20, new Vector2(0, 0), 0f, false, false);
+
+        if (Player1 == null)
+        {
+            Player1 = NewPlayer;
+        }
+        else
+        {
+            Player2 = NewPlayer;
+        }
+
+        return NewPlayer;
+    }
+
+    string GetPlayerName()
+    {
+        return "Default";
+    }
 	
 	// Update is called once per frame
 	void Update ()
