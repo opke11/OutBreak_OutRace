@@ -50,6 +50,12 @@ public class PickUp : MonoBehaviour {
 		case TypesOfPickUP.spike:
 			collision.gameObject.BroadcastMessage("PickupSpikes", SendMessageOptions.DontRequireReceiver);
 			break;
+		case TypesOfPickUP.zomebieHeard:
+			collision.gameObject.BroadcastMessage("HittedZombieHeard", SendMessageOptions.DontRequireReceiver);
+			break;
+		case TypesOfPickUP.supplies:
+			collision.gameObject.BroadcastMessage("PickupSupplies", SendMessageOptions.DontRequireReceiver);
+			break;
 			//Do similar things with the other enum types.
 		}
 		
