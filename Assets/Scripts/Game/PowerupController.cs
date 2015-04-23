@@ -11,41 +11,48 @@ public class PowerupController : MonoBehaviour {
     string CurrentPowerup;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
+        
         ChoosePowerupType();
 	
 	}
 
     void ChoosePowerupType()
     {
-        
 
-        int PowerupChooser = Random.Range(1,4);
+        
+        int PowerupChooser = Random.Range(1,PowerupList.Count);
 
         switch(PowerupChooser)
         {
             case 1: //Scrap Metal
-                CurrentPowerup = "Scrap";
-                print("Spawning powerup as: Scrap ");
+                CurrentPowerup = "Armour";
+                print("Spawning powerup as: Armour ");
                 Instantiate(PowerupList[0], this.transform.position, this.transform.rotation);
                 break;
 
             case 2: //Spiked Plates
                 CurrentPowerup = "Spikes";
                 print("Spawning powerup as: Spikes ");
-                Instantiate(PowerupList[0], this.transform.position, this.transform.rotation);
+                Instantiate(PowerupList[1], this.transform.position, this.transform.rotation);
                 break;
 
             case 3: //Nitrous
                 CurrentPowerup = "Nitrous";
                 print("Spawning powerup as: Nitrous ");
-                Instantiate(PowerupList[0], this.transform.position, this.transform.rotation);
+                Instantiate(PowerupList[2], this.transform.position, this.transform.rotation);
                 break;
 
-            case 4: //Supplies
+            case 4: //Nitrous
+                CurrentPowerup = "DoubleNitrous";
+                print("Spawning powerup as: DoubleNitrous ");
+                Instantiate(PowerupList[3], this.transform.position, this.transform.rotation);
+                break;
+
+            case 5: //Supplies
                 CurrentPowerup = "Supplies";
                 print("Spawning powerup as: Supplies ");
-                Instantiate(PowerupList[0], this.transform.position, this.transform.rotation);
+                Instantiate(PowerupList[4], this.transform.position, this.transform.rotation);
                 break;
                 
         }
@@ -82,6 +89,10 @@ public class PowerupController : MonoBehaviour {
 
                 case "Nitrous": //Nitrous
                     ColPlayer.NitroActive = true;
+                    break;
+
+                case "DoubleNitrous":
+
                     break;
 
                 case "Supplies": //Supplies

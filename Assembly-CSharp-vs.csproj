@@ -47,11 +47,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Game\Blood.cs" />
+     <Compile Include="Assets\Scripts\Game\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Game\GameController.cs" />
      <Compile Include="Assets\Scripts\Game\PickUp.cs" />
      <Compile Include="Assets\Scripts\Game\Player.cs" />
      <Compile Include="Assets\Scripts\Game\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Game\PowerupController.cs" />
+     <Compile Include="Assets\Scripts\Game\RoadScript.cs" />
      <Compile Include="Assets\Scripts\UI\TitleController.cs" />
      <Compile Include="Assets\Scripts\UI\UIGameOver.cs" />
      <Compile Include="Assets\Scripts\UI\UILoadLevel.cs" />
