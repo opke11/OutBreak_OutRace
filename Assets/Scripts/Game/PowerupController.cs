@@ -6,7 +6,7 @@ public class PowerupController : MonoBehaviour {
 
     GameController Game = new GameController();
 
-    public List<Sprite> PowerupList;
+    public List<GameObject> PowerupList;
 
     string CurrentPowerup;
 
@@ -98,7 +98,14 @@ public class PowerupController : MonoBehaviour {
                 case "Supplies": //Supplies
                     ColPlayer.PlayerScore += 10;
                     break;
-            }        
+            }
+    
+        
+    }
+
+    void DestroyObject()
+    {
+        Destroy(this);
     }
 
 }
