@@ -72,6 +72,22 @@ public class Player : MonoBehaviour {
 				gameController.GameOver ();
 			}
 		}
+
+		if (Input.GetKey (KeyCode.DownArrow))
+		{
+			GetComponent<Rigidbody2D>().mass = 5;
+		}
+		else if (Input.GetKey (KeyCode.UpArrow))
+		{
+			GetComponent<Rigidbody2D>().mass = 0.0001f;
+		}
+		else
+		{
+			if (GetComponent<Rigidbody2D>().mass != 1)
+			{
+				GetComponent<Rigidbody2D>().mass = 1;
+			}
+		}
 	}
 
 	//handles increasing the player speed over time
