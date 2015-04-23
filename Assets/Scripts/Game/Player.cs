@@ -14,7 +14,7 @@ public class Player : MonoBehaviour {
 	private float playerAcceleration;
 	private float playerBreak;
 	private UIScore score;
-	public int spikeEndu;
+    public float SpikeTime;
 	
 	void Start ()
 	{
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour {
 		playerAcceleration = 5 * Time.deltaTime;
 		playerBreak = 10 * Time.deltaTime;
 		playerSpeed = 0f;
-		spikeEndu = 0;
+        SpikeTime = 0f;
 	}
 	
 	void Update ()
@@ -116,12 +116,6 @@ public class Player : MonoBehaviour {
 			gameoverTimer = gameoverTime;
 			hasBeenHit = true;
 		}
-
-		//The purpose of the armour has been used.
-		if (armourPickedUp == true) {
-			score.SetScore(65);
-			armourPickedUp = false;
-		}
 	}
 
 	//USE the functions below for the pickup messages
@@ -136,7 +130,7 @@ public class Player : MonoBehaviour {
 	void PickupSpikes ()
 	{
 		//something here to add spikes pickup
-		spikeEndu = 10;
+		SpikeTime = 10;
 	}
 
 	void PickupNitro ()
@@ -164,11 +158,12 @@ public class Player : MonoBehaviour {
 	void ObstacleBarricade ()
 	{
 		//something here to add barricade hit - slow speed
-		score.SetScore (98);	
-		if (spikeEndu <= 0) {
+		score.SetScore (98);
+        if (SpikeTime <= 0)
+        {
 			playerSpeed *= 0.5f;
 		} else {
-			spikeEndu--;
+            SpikeTime--;
 		}
 	}
 }
